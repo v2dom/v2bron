@@ -3,7 +3,6 @@ const { Client, GatewayIntentBits, PermissionsBitField } = require('discord.js')
 const { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerStatus } = require('@discordjs/voice');
 const play = require('play-dl');
 
-// Create a new client instance
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -18,11 +17,9 @@ const player = createAudioPlayer();
 const queue = [];
 let currentSong = null;
 
-// Ready event when the bot has logged in
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
 
-  // Register slash commands
   const commands = [
     { name: 'ping', description: 'Replies with Pong!' },
     { name: 'kick', description: 'Kicks a user', options: [{ name: 'user', type: 6, description: 'User to kick', required: true }] },
@@ -43,7 +40,6 @@ client.once('ready', async () => {
   console.log('Commands registered!');
 });
 
-// Function to play the next song in the queue
 async function playNextSong(connection) {
   if (queue.length === 0) {
     currentSong = null;
@@ -56,7 +52,6 @@ async function playNextSong(connection) {
   connection.subscribe(player);
 }
 
-// Handling interaction events (slash commands)
 client.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
 
@@ -134,5 +129,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-// Log in to Discord using the token from the .env file
 client.login(process.env.TOKEN);
