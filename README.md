@@ -40,7 +40,7 @@ A versatile Discord bot with music playback, moderation, and utility features bu
 
 2. **installation**
    ```bash
-   git clone https://github.com/{your-repo}/v2bron.git
+   git clone https://github.com/v2dom/v2bron.git
    cd v2bron
    npm install
 
